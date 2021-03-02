@@ -1,0 +1,42 @@
+HELP.md
+/target/
+*target/
+!.mvn/wrapper/maven-wrapper.jar
+/.mvn/
+*.mvn/
+/log/
+logs/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+*.txlcn
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+/build/
+
+### VS Code ###
+.vscode/
+
+mvnw
+mvnw.cmd
+src/main/resources/application-local.yml
+src/main/resources/local/
+/signTxtTemp/
+.txlcn/
