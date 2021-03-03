@@ -44,18 +44,23 @@ public class FrontControllerServlet extends HttpServlet {
      * 读取所有controller对应的类和方法
      */
     private void initHandleMethods() {
+        StringBuilder sb = new StringBuilder();
         for (Controller controller : ServiceLoader.load(Controller.class)) {
             Class<?> controllerClass = controller.getClass();
             Path pathFromClass = controllerClass.getAnnotation(Path.class);
-            String requestPath = pathFromClass == null ? "" : pathFromClass.value();
+            String classPath = pathFromClass.value();
             Method[] methods = controllerClass.getMethods();
             //循环遍历查找支持http请求的方法
             for (Method method : methods) {
-                Set<String> supportedHttpMethods = findSupportedHttpMethods(method);
                 Path pathFromMethod = method.getAnnotation(Path.class);
-                if (pathFromMethod != null) {
-                    requestPath += pathFromMethod.value();
+
+                //如果没有标记 @Path ，就认为不是处理请求的方法
+                if (pathFromMethod == null) {
+                    continue;
                 }
+                Set<String> supportedHttpMethods = findSupportedHttpMethods(method);
+                String requestPath = sb.append(classPath).append(pathFromMethod.value()).toString();
+                sb.delete(0,sb.length());
                 handleRequestInfoMapping.put(requestPath, new HandlerRequestInfo(requestPath, method, supportedHttpMethods, controller));
             }
         }
@@ -92,8 +97,8 @@ public class FrontControllerServlet extends HttpServlet {
                     return;
                 }
                 if (controller instanceof MyPageController) {
-                    MyPageController myPageController = MyPageController.class.cast(controller);
-                    String viewPath = myPageController.execute(req, resp);
+                    Method handlerMethod = handlerRequestInfo.getHandlerMethod();
+                    String viewPath = String.valueOf(handlerMethod.invoke(controller, req, resp));
                     if (!viewPath.startsWith("/")) {
                         viewPath = "/" + viewPath;
                     }

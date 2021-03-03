@@ -19,15 +19,16 @@ import javax.ws.rs.Path;
 @Path("/user")
 public class UserController implements MyPageController {
 
-    @Path("/register")
     @GET
-    public String toRegister(){
+    @Path("/to/register")
+    public String toRegister(HttpServletRequest request, HttpServletResponse response){
+        System.out.println("进入注册页面。。。");
         return "register.jsp";
     }
 
     @POST
     @Path("/register")
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+    public String register(HttpServletRequest request, HttpServletResponse response) throws Throwable {
         User user = new User();
         user.setName(request.getParameter("name"));
         user.setPassword(request.getParameter("password"));

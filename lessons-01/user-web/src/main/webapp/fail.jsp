@@ -6,7 +6,6 @@
 <body>
 	<div class="container-lg">
 		<!-- Content here -->
-		Hello,World 2021
-		<a href="http://localhost:8080/user/register">用户注册</a>
+		<h1>提交失败</h1>
 	</div>
 </body>

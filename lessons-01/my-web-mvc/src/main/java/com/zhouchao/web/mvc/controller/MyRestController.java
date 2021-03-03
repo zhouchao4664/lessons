@@ -6,5 +6,5 @@ package com.zhouchao.web.mvc.controller;
  * @Description
  **/
 
-public interface MyRestController {
+public interface MyRestController extends Controller{
 }
