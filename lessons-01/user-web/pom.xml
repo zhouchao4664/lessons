@@ -6,16 +6,19 @@
         <artifactId>lessons-01</artifactId>
         <groupId>com.zhouchao.geekbang</groupId>
         <version>v1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>user-web</artifactId>
+    <name>User Web Application</name>
+    <packaging>war</packaging>
 
     <dependencies>
         <dependency>
-            <artifactId>lessons-01</artifactId>
             <groupId>com.zhouchao.geekbang</groupId>
-            <version>${revision}</version>
+            <artifactId>my-web-mvc</artifactId>
+            <version>v1-SNAPSHOT</version>
         </dependency>
 
         <!-- Servlet API -->
@@ -33,10 +36,6 @@
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derby</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
         </dependency>
 
     </dependencies>
