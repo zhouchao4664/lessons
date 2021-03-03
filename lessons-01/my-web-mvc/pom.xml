@@ -6,6 +6,7 @@
         <artifactId>lessons-01</artifactId>
         <groupId>com.zhouchao.geekbang</groupId>
         <version>v1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
